@@ -180,10 +180,10 @@ var pageFunctions = {
       });
 
 
-      var bookOne = new Book({title:'Charlie and the Chocolate Factory', author: 'Roald Dahl'});
-      var bookTwo = new Book({title:'To Kill a Mockingbird', author: 'Harper Lee'});
-      var bookThree = new Book({title:'War and Peace', author: 'Leo Tolstoy'});
-      var bookFour = new Book({title:'Pride and Prejudice', author: 'Jane Austen'});
+      var bookOne = new Book({title:'Charlie and the Chocolate Factory', author: 'Roald Dahl', form: 'hardcover', pubdate: 1973});
+      var bookTwo = new Book({title:'To Kill a Mockingbird', author: 'Harper Lee', form: 'paperback', pubdate: 1956});
+      var bookThree = new Book({title:'War and Peace', author: 'Leo Tolstoy', form: 'paperback', pubdate: 1960});
+      var bookFour = new Book({title:'Pride and Prejudice', author: 'Jane Austen', form: 'e-book', pubdate: 1987});
 
 
       var library = new Library([bookOne, bookTwo, bookThree, bookFour]);
