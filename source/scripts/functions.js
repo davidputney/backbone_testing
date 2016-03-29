@@ -161,6 +161,11 @@ var pageFunctions = {
     initializeIndexToo: function () {
       var self=this;
 
+
+      Handlebars.registerHelper('add', function( param1, param2){
+        return param1 + param2
+      });
+
       Book = Backbone.Model.extend({
         initialize: function() {
           console.log('a new book');
