@@ -231,8 +231,9 @@ var pageFunctions = {
         'click #WarandPeace': 'alertBookToo'
       });
 
+
       MyRouter = Backbone.Router.extend({
-        routes:{'hello/:name': 'sayHello', 'foo/': 'foo', '': 'start', '*default': 'defaultRoute'},
+        routes:{'hello/': 'sayHello', 'foo/': 'foo', '': 'start', '*default': 'defaultRoute'},
         start: function() {
           console.log('intial route');
         },
@@ -250,6 +251,9 @@ var pageFunctions = {
       var router = new MyRouter();
 
       Backbone.history.start({pushState:true, root:"/test/"});
+
+      // Backbone.history.start();
+
 
     }
 

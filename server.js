@@ -6,9 +6,11 @@ var bodyParser = require('body-parser');
 var app = express();
 var bookId = 100;
 
+console.log('server');
+
 app.use(express.static(__dirname + '/test'));
-app.use('/test/hello', express.static(__dirname + "/test"));
-app.use('/test/foo', express.static(__dirname + "/test"));
+app.use('/hello', express.static(__dirname + "/test"));
+app.use('/foo', express.static(__dirname + "/test"));
 
 function findBook(id){
   for(var i =0; i < books.length; i++){
