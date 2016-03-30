@@ -7,6 +7,8 @@ var app = express();
 var bookId = 100;
 
 app.use(express.static(__dirname + '/test'));
+app.use('/test/hello', express.static(__dirname + "/test"));
+app.use('/test/foo', express.static(__dirname + "/test"));
 
 function findBook(id){
   for(var i =0; i < books.length; i++){
@@ -108,5 +110,4 @@ app.delete('/books/:id', function (request, response) {
   };
 
   app.use(allowCrossDomain);
-
   app.listen(process.env.PORT || 5000);
