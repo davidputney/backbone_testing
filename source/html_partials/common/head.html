@@ -33,12 +33,20 @@
     <script type="text/x-handlebars-template" id="library-template">
       <ul>
       {{#each library}}
-          <li>
-          {{title}} by {{author}}
+      {{! Name of the person }}
+          <li id="{{ clean title }}">
+          {{title}} by {{author}} form {{form}}
+          {{#if pubdate}}
+            {{add pubdate 5}}
+            <p>published {{ pubdate }}</p>
+          {{else}}
+            <p>not here yet!</p>
+          {{/if}}
           </li>
         {{/each}}
       </ul>
     </script>
+
 
 
     <link rel="stylesheet" href="css/main_styles.css">

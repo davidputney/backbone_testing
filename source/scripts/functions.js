@@ -2,7 +2,7 @@
 
 var pageFunctions = {
     intialize: function () {
-      console.log('works');
+      console.log('works')
       var self=this;
       this.intializeWatchers(); //listens for clicks
     },
@@ -103,7 +103,7 @@ var pageFunctions = {
       console.log('after add' , myOnlineLibrary.length);
 
 
-      myOnlineLibrary.create([bookOne])
+      myOnlineLibrary.create([bookOne]);
 
 
       // myOnlineLibrary.bind("add", this.reactToChange, this);
@@ -164,6 +164,10 @@ var pageFunctions = {
 
       Handlebars.registerHelper('add', function( param1, param2){
         return param1 + param2
+      });
+
+      Handlebars.registerHelper('clean', function(string) {
+        return string.replace(/ /gi, '');
       });
 
       Book = Backbone.Model.extend({
@@ -227,10 +231,25 @@ var pageFunctions = {
         'click #WarandPeace': 'alertBookToo'
       });
 
-      // myView.undelegateEvents();
+      MyRouter = Backbone.Router.extend({
+        routes:{'hello/:name': 'sayHello', 'foo/': 'foo', '': 'start', '*default': 'defaultRoute'},
+        start: function() {
+          console.log('intial route');
+        },
+        defaultRoute: function() {
+          console.log('router does not know this route');
+        },
+        sayHello: function(name) {
+          console.log('saying hello' + name);
+        },
+        foo: function(bar) {
+          console.log('pity the foo');
+        }
+      });
 
-      // changes $el to to foobar
-      // myView.setElement('#foobar');
+      var router = new MyRouter();
+
+      Backbone.history.start({pushState:true, root:"/test/"});
 
     }
 
