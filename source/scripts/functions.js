@@ -231,17 +231,25 @@ var pageFunctions = {
         'click #WarandPeace': 'alertBookToo'
       });
 
-
       MyRouter = Backbone.Router.extend({
-        routes:{'hello/': 'sayHello', 'foo/': 'foo', '': 'start', '*default': 'defaultRoute'},
+        routes:{'hello(/:name)(/:skill)':'sayHello', '': 'start', '*default': 'defaultRoute'},
+        initialize: function(options) {
+          console.log('init');
+          this.route('foo', 'foo');
+        },
         start: function() {
           console.log('intial route');
         },
         defaultRoute: function() {
           console.log('router does not know this route');
         },
-        sayHello: function(name) {
-          console.log('saying hello' + name);
+        sayHello: function(name, skill) {
+          if (name && skill) {
+            console.log('saying hello' + name + skill)
+          } else {
+            console.log('saying hello' + name)
+          }
+
         },
         foo: function(bar) {
           console.log('pity the foo');
@@ -250,14 +258,37 @@ var pageFunctions = {
 
       var router = new MyRouter();
 
-      Backbone.history.start({pushState:true, root:"/test/"});
+      Backbone.history.start();
 
-      // Backbone.history.start();
+      router.on('route:sayHello', function(page) {
+        console.log('page', page);
+      });
+
+      function showBook(name) {
+        console.log('show book' + name);
+        router.navigate('#hello/' + name);
+      }
+
+      showBook('james')
+
+    AppModel = Backbone.Model.extend({
+        defaults: {
+          currentPage: 'Beginning Backbone'
+        },
+        initialize: function() {
+          this.on('change', function() {
+            console.log('has changed');
+          });
+        }
+      });
+
+      var appModel = new AppModel();
+      var router = new MyRouter({model:AppModel});
+
+
 
 
     }
-
-
   };
 
 
